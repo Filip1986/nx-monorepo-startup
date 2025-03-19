@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  db:
+    container_name: nx_db_container
+    image: postgres:13
+    environment:
+      POSTGRES_USER: filip
+      POSTGRES_PASSWORD: Welcome123
+      POSTGRES_DB: nx-monorepo-startup
+    ports:
+      - "5432:5432"
+
+  mailhog:
+    container_name: nx_mailhog_container
+    image: mailhog/mailhog
+    ports:
+      - "1025:1025"
+      - "8025:8025"
+
+  backend:
+    container_name: nx_backend_container
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      DATABASE_URL: postgres://filip:Welcome123@nx_db_container:5432/nx-monorepo-startup
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
