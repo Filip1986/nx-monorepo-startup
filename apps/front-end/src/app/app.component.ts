@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { PrimeNGConfig } from 'primeng/api';
-import { Aura } from 'primeng/themes/aura';
 import { ButtonModule } from 'primeng/button';
 
 @Component({
@@ -12,9 +10,5 @@ import { ButtonModule } from 'primeng/button';
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  constructor(private config: PrimeNGConfig) {
-    this.config.theme.set({ preset: Aura });
-  }
-
   title = 'front-end';
 }

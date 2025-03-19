@@ -12,6 +12,8 @@ import { AuthState } from './store/auth.state';
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { provideHttpClient } from '@angular/common/http';
+import { providePrimeNG } from 'primeng/config';
+import Aura from '@primeng/themes/aura';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -20,6 +22,11 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(),
     provideStore(),
     provideAnimationsAsync(),
+    providePrimeNG({
+      theme: {
+        preset: Aura
+      }
+    }),
     importProvidersFrom(
       NgxsModule.forRoot([AuthState]),
       ...(isDevMode()
